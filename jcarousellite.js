@@ -59,7 +59,7 @@
  *      btnNext: ".next",
  *      btnPrev: ".prev"
  * });
- * @desc Creates a basic carousel. Clicking "btnPrev" navigates backwards and "btnNext" navigates forward.
+ * @description Creates a basic carousel. Clicking "btnPrev" navigates backwards and "btnNext" navigates forward.
  *
  * @option btnGo - array - no defaults
  * @example
@@ -68,7 +68,7 @@
  *      btnPrev: ".prev",
  *      btnGo: [".0", ".1", ".2"]
  * });
- * @desc If you don't want next and previous buttons for navigation, instead you prefer custom navigation based on
+ * @description If you don't want next and previous buttons for navigation, instead you prefer custom navigation based on
  * the item number within the carousel, you can use this option. Just supply an array of selectors for each element
  * in the carousel. The index of the array represents the index of the element. What i mean is, if the
  * first element in the array is ".0", it means that when the element represented by ".0" is clicked, the carousel
@@ -82,7 +82,7 @@
  * $(".carousel").jCarouselLite({
  *      mouseWheel: true
  * });
- * @desc The carousel can also be navigated using the mouse wheel interface of a scroll mouse instead of using buttons.
+ * @description The carousel can also be navigated using the mouse wheel interface of a scroll mouse instead of using buttons.
  * To get this feature working, you have to do 2 things. First, you have to include the mouse-wheel plugin from brandon.
  * Second, you will have to set the option "mouseWheel" to true. That's it, now you will be able to navigate your carousel
  * using the mouse wheel. Using buttons and mouseWheel or not mutually exclusive. You can still have buttons for navigation
@@ -100,7 +100,7 @@
  *      auto: 800,
  *      speed: 500
  * });
- * @desc You can make your carousel auto-navigate itself by specfying a millisecond value in this option.
+ * @description You can make your carousel auto-navigate itself by specfying a millisecond value in this option.
  * The value you specify is the amount of time between 2 slides. The default is null, and that disables auto scrolling.
  * Specify this value and magically your carousel will start auto scrolling.
  *
@@ -111,7 +111,7 @@
  *      btnPrev: ".prev",
  *      speed: 800
  * });
- * @desc Specifying a speed will slow-down or speed-up the sliding speed of your carousel. Try it out with
+ * @description Specifying a speed will slow-down or speed-up the sliding speed of your carousel. Try it out with
  * different speeds like 800, 600, 1500 etc. Providing 0, will remove the slide effect.
  *
  * @option easing : string - no easing effects by default.
@@ -121,7 +121,7 @@
  *      btnPrev: ".prev",
  *      easing: "bounceout"
  * });
- * @desc You can specify any easing effect. Note: You need easing plugin for that. Once specified,
+ * @description You can specify any easing effect. Note: You need easing plugin for that. Once specified,
  * the carousel will slide based on the provided easing effect.
  *
  * @option vertical : boolean - default is false
@@ -131,7 +131,7 @@
  *      btnPrev: ".prev",
  *      vertical: true
  * });
- * @desc Determines the direction of the carousel. true, means the carousel will display vertically. The next and
+ * @description Determines the direction of the carousel. true, means the carousel will display vertically. The next and
  * prev buttons will slide the items vertically as well. The default is false, which means that the carousel will
  * display horizontally. The next and prev items will slide the items from left-right in this case.
  *
@@ -142,7 +142,7 @@
  *      btnPrev: ".prev",
  *      circular: false
  * });
- * @desc Setting it to true enables circular navigation. This means, if you click "next" after you reach the last
+ * @description Setting it to true enables circular navigation. This means, if you click "next" after you reach the last
  * element, you will automatically slide to the first element and vice versa. If you set circular to false, then
  * if you click on the "next" button after you reach the last element, you will stay in the last element itself
  * and similarly for "previous" button and first element.
@@ -154,7 +154,7 @@
  *      btnPrev: ".prev",
  *      visible: 4
  * });
- * @desc This specifies the number of items visible at all times within the carousel. The default is 3.
+ * @description This specifies the number of items visible at all times within the carousel. The default is 3.
  * You are even free to experiment with real numbers. Eg: "3.5" will have 3 items fully visible and the
  * last item half visible. This gives you the effect of showing the user that there are more images to the right.
  *
@@ -165,7 +165,7 @@
  *      btnPrev: ".prev",
  *      start: 2
  * });
- * @desc You can specify from which item the carousel should start. Remember, the first item in the carousel
+ * @description You can specify from which item the carousel should start. Remember, the first item in the carousel
  * has a start of 0, and so on.
  *
  * @option scrool : number - default is 1
@@ -175,7 +175,7 @@
  *      btnPrev: ".prev",
  *      scroll: 2
  * });
- * @desc The number of items that should scroll/slide when you click the next/prev navigation buttons. By
+ * @description The number of items that should scroll/slide when you click the next/prev navigation buttons. By
  * default, only one item is scrolled, but you may set it to any number. Eg: setting it to "2" will scroll
  * 2 items when you click the next or previous buttons.
  *
@@ -191,7 +191,7 @@
  *          alert("After animation ends:" + a);
  *      }
  * });
- * @desc If you wanted to do some logic in your page before the slide starts and after the slide ends, you can
+ * @description If you wanted to do some logic in your page before the slide starts and after the slide ends, you can
  * register these 2 callbacks. The functions will be passed an argument that represents an array of elements that
  * are visible at the time of callback.
  *

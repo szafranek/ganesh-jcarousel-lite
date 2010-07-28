@@ -237,7 +237,9 @@ $.fn.jCarouselLite = function(o) {
         var li = ul.children("li"), itemLength = li.size(), curr = o.start;
         div.css("visibility", "visible");
 
-        li.css({overflow: "hidden", float: o.vertical ? "none" : "left"});
+        // "float" is quoted because it's a reserved word in JavaScript and 
+        // causes errors when minifying the script.
+        li.css({overflow: "hidden", "float": o.vertical ? "none" : "left"});
         ul.css({margin: "0", padding: "0", position: "relative", "list-style-type": "none", "z-index": "1"});
         div.css({overflow: "hidden", position: "relative", "z-index": "2", left: "0px"});
 

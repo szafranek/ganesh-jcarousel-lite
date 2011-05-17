@@ -1,3 +1,4 @@
+/*jslint*/
 /**
  * jCarouselLite - jQuery plugin to navigate images/any content in a carousel style widget.
  * @requires jQuery v1.2 or above
@@ -252,43 +253,48 @@ $.fn.jCarouselLite = function(o) {
 
         div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
 
-        if(o.btnPrev)
+        if(o.btnPrev) {
             $(o.btnPrev).click(function() {
                 return go(curr-o.scroll);
             });
+        }
 
-        if(o.btnNext)
+        if(o.btnNext) {
             $(o.btnNext).click(function() {
                 return go(curr+o.scroll);
             });
+        }
 
-        if(o.btnGo)
+        if(o.btnGo) {
             $.each(o.btnGo, function(i, val) {
                 $(val).click(function() {
                     return go(o.circular ? o.visible+i : i);
                 });
             });
+        }
 
-        if(o.mouseWheel && div.mousewheel)
+        if(o.mouseWheel && div.mousewheel) {
             div.mousewheel(function(e, d) {
                 return d>0 ? go(curr-o.scroll) : go(curr+o.scroll);
             });
+        }
 
-        if(o.auto)
+        if(o.auto) {
             setInterval(function() {
                 go(curr+o.scroll);
             }, o.auto+o.speed);
+        }
 
         function vis() {
             return li.slice(curr).slice(0,v);
-        };
+        }
 
         function go(to) {
             if(!running) {
 
-                if(o.beforeStart)
+                if(o.beforeStart) {
                     o.beforeStart.call(this, vis());
-
+                }
                 if(o.circular) {            // If circular we are in first or last, then goto the other end
                     if(to<=o.start-v-1) {           // If first, then goto last
                         ul.css(animCss, -((itemLength-(v*2))*liSize)+"px");
@@ -298,10 +304,15 @@ $.fn.jCarouselLite = function(o) {
                         ul.css(animCss, -( (v) * liSize ) + "px" );
                         // If "scroll" > 1, then the "to" might not be equal to the condition; it can be greater depending on the number of elements.
                         curr = to==itemLength-v+1 ? v+1 : v+o.scroll;
-                    } else curr = to;
+                    } else {
+                        curr = to;
+                    }
                 } else {                    // If non-circular and to points to first or last, we just return.
-                    if(to<0 || to>itemLength-v) return;
-                    else curr = to;
+                    if(to<0 || to>itemLength-v) {
+                        return;
+                    } else {
+                        curr = to;
+                    }
                 }                           // If neither overrides it, the curr will still be "to" and we can proceed.
 
                 running = true;
@@ -309,36 +320,35 @@ $.fn.jCarouselLite = function(o) {
                 ul.animate(
                     animCss == "left" ? { left: -(curr*liSize) } : { top: -(curr*liSize) } , o.speed, o.easing,
                     function() {
-                        if(o.afterEnd)
+                        if(o.afterEnd) {
                             o.afterEnd.call(this, vis());
+                        }
                         running = false;
                     }
                 );
                 // Disable buttons when the carousel reaches the last/first, and enable when not
                 if(!o.circular) {
                     $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
-                    $( (curr-o.scroll<0 && o.btnPrev)
-                        ||
-                       (curr+o.scroll > itemLength-v && o.btnNext)
-                        ||
+                    $( (curr-o.scroll<0 && o.btnPrev) ||
+                       (curr+o.scroll > itemLength-v && o.btnNext) ||
                        []
                      ).addClass("disabled");
                 }
 
             }
             return false;
-        };
+        }
     });
 };
 
 function css(el, prop) {
-    return parseInt($.css(el[0], prop)) || 0;
-};
+    return parseInt($.css(el[0], prop), 10) || 0;
+}
 function width(el) {
     return  el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
-};
+}
 function height(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
-};
+}
 
 })(jQuery);

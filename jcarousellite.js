@@ -224,6 +224,18 @@ $.fn.jCarouselLite = function(o) {
     }, o || {});
 
     return this.each(function() {                           // Returns the element collection. Chainable.
+        
+        // Disable buttons when the carousel reaches the last/first, and enable when not
+        function disableButtons(curr) {
+            if(!o.circular) {
+                $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
+                $((curr-o.scroll<0 && o.btnPrev) ||
+                   (curr+o.scroll > itemLength-v && o.btnNext) ||
+                   []
+                 ).addClass("disabled");
+            }
+        }
+        
 
         var running = false, animCss=o.vertical?"top":"left", sizeCss=o.vertical?"height":"width";
         var div = $(this), ul = $("ul", div).not("ul ul"), v = o.visible;
@@ -252,6 +264,9 @@ $.fn.jCarouselLite = function(o) {
         ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
 
         div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
+        
+        // set initial state of buttons
+        disableButtons(curr);
 
         if(o.btnPrev) {
             $(o.btnPrev).click(function() {
@@ -326,18 +341,12 @@ $.fn.jCarouselLite = function(o) {
                         running = false;
                     }
                 );
-                // Disable buttons when the carousel reaches the last/first, and enable when not
-                if(!o.circular) {
-                    $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
-                    $( (curr-o.scroll<0 && o.btnPrev) ||
-                       (curr+o.scroll > itemLength-v && o.btnNext) ||
-                       []
-                     ).addClass("disabled");
-                }
-
+                
+                disableButtons(curr);
             }
             return false;
         }
+
     });
 };
 
